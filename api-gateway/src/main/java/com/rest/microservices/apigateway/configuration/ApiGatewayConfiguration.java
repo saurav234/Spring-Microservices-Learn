@@ -15,9 +15,11 @@ public class ApiGatewayConfiguration {
     public RouteLocator gatewayRouter(RouteLocatorBuilder builder) {
         Function<GatewayFilterSpec, UriSpec> filterFunc = (f) -> f.addRequestHeader("myHeader", "myHeaderValue")
                 .addRequestParameter("myParam", "myValue");
-        Function<PredicateSpec, Buildable<Route>> routeFunction = (p) -> p.path("/get").filters(filterFunc).uri("http://httpbin.org:80");
+        Function<PredicateSpec, Buildable<Route>> rf1 = (p) -> p.path("/get").filters(filterFunc).uri("http://httpbin.org:80");
+        Function<PredicateSpec, Buildable<Route>> rf2 = (p) -> p.path("/currency-exchange/**").filters(filterFunc).uri("lb://currency-exchange/");
+        Function<PredicateSpec, Buildable<Route>> rf3 = (p) -> p.path("/currency-conversion/**").filters(filterFunc).uri("lb://currency-conversion/");
         return builder.routes()
-                .route(routeFunction)
+                .route(rf2).route(rf1).route(rf3)
                 .build();
     }
 }
