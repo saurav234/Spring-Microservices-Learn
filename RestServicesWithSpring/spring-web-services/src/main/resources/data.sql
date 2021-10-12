@@ -1,0 +1,11 @@
+insert into user values(77, sysdate(), 'AB')
+insert into user values(44, sysdate(), 'Kohli')
+insert into user values(123, sysdate(), 'Rohit')
+insert into user values(13, sysdate(), 'Bravo')
+insert into user values(155, sysdate(), 'Bumrah')
+
+insert into post values(111, 'I scored a century', 77)
+insert into post values(112, 'I am out on duck', 44)
+insert into post values(113, 'I scored a double century', 123)
+insert into post values(114, 'I danced during the match', 13)
+insert into post values(115, 'I dont get wickets', 155)
